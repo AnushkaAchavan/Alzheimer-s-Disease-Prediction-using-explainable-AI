@@ -36,7 +36,14 @@ ADNI_PRE/
 │   │   └── ADNI/
 │   │       └── 002_S_0413/    # Subject ID
 │   │           └── *.nii      # Raw scans
-│   └── raw_metadata.csv
+│   └────  ADNI1_Complete_3T.csv
+│   ├── ADNI1_Complete_2T/
+|
+├── src/                       # Source file with main functions
+│   ├── convert_to_slices.py/  # Slice the 3D images into 2D images
+│   └── merge_csv.py/          # Merge all the different csv files into one master csv
+│   └── utils.py/              # Conatins utilty functions like find_all_nii_images, get_image_id, get_subject_id
+|
 ├── processed_data/            # Pipeline Output
 │   ├── slices/                # Generated 2D .png images
 │   └── final_metadata/        # Combined structured CSV
@@ -62,6 +69,7 @@ ADNI_PRE/
 ### 1. Clone the Repository
 ```bash
 git clone [https://github.com/your-username/ADNI_PRE.git](https://github.com/your-username/ADNI_PRE.git)
+make sure to create raw data folder as shown in folder structure
 cd ADNI_PRE
 ```
 
