@@ -1,40 +1,98 @@
------Alzheimers Disease Images Preprocessing Pipeline----
+$$ Alzheimer's ~Disease ~Image ~Preprocessing ~Pipeline $$ 
 
-Aim of this module is to convert the images from 3d into 2d images and greyscale.
-Also convert them from .nii images to .png images 
+A robust preprocessing pipeline designed to convert raw 3D MRI brain scan data into usable 2D grayscale image slices, along with structured metadata for further Machine Learning and Deep Learning tasks.
 
-------Final Metadata------------
-A CSV file with combined information of all the csv present in various folders along with sliced image ids
+## Project Overview
 
-------Uploading images in raw_data folder-----
- * Folder Structure:-
-    raw_data
-        ADNI1_ Complete 1.5Yr 3T
-            ADNI
-                002_S_0413
-                    ... .nii image
+This project focuses on preparing Alzheimer's Disease Neuroimaging Initiative (ADNI) dataset images for model training.
 
-            .csv file
-    
+## The pipeline:
 
-Sample folders are available in the raw_data folder
+Converts 3D .nii MRI scans → 2D slices
+Transforms images into grayscale .png format
+Generates a final combined metadata CSV
 
-----Steps to run:---------------
-1) cd ADNI_PRE
-2) pip install -r requirements.txt
-3) python run_pipeline.py
+This preprocessing step is essential for building accurate AI models for Alzheimer's disease detection.
 
-------Expected output-------------
-1) Image slices present in processed_data/slices
-2) Final CSV files in processed_data/final_metadata
+ ## Objectives
+ Convert .nii medical images into 2D slices
+ Normalize and convert images into grayscale .png format
+ Organize processed data efficiently
+ Merge multiple metadata files into a single structured CSV
+ Folder Structure
+raw_data/
+│
+├── ADNI1_Complete_1.5Yr_3T/
+│   ├── ADNI/
+│   │   ├── 002_S_0413/
+│   │   │   ├── *.nii files
+│   │
+│   ├── metadata.csv
+│
+processed_data/
+│
+├── slices/                # Generated 2D image slices
+└── final_metadata/        # Combined CSV file
 
+ADNI_PRE/
+│
+├── run_pipeline.py
+├── requirements.txt
+ Installation & Setup
+1️ Clone the Repository
+git clone <your-repo-link>
+cd ADNI_PRE
+2️ Install Dependencies
+pip install -r requirements.txt
+3️ Run the Pipeline
+python run_pipeline.py
+ 
+ ## Output
+ 
+After successful execution, you will get:
 
---------Expected Error/Challenges------------
+ Image Data
+ Location: processed_data/slices/
+ Contains: 2D grayscale .png image slices
+ Metadata
+Location: processed_data/final_metadata/
+Contains:
+Combined CSV from all folders
+Corresponding image slice IDs
+ Common Issues & Fixes
+ 1. CSV File Locked Error
 
-1) If you have csv file opened somewhere it will not allow to run the program to run further
+Problem: Pipeline stops if CSV is open
+Solution:
+Close the CSV file before running the script
 
-2) Too long file path
-    Windows allows only 279 characters at max, but we have file names exceeding that limit
-    
-    Possible solutions:-
-    1) Shorten the folder name ,ex- ADNI1_Complete 3Yr 3T ====> 3Yr 3T
+Problem: File path exceeds 260–279 character limit
+
+## Solutions:
+
+Rename folders to shorter names
+
+ADNI1_Complete_3Yr_3T → 3Yr_3T
+
+Move project closer to root directory
+
+C:/Projects/ADNI_PRE
+
+ ## Use Cases
+ Alzheimer's Disease Detection
+ Deep Learning (CNN models)
+ Medical Image Analysis
+ Research & Academic Projects
+ 
+ ## Tech Stack
+Python 
+NumPy
+Pandas
+NiBabel (for .nii files)
+OpenCV / PIL
+
+ ## Future Improvements
+ Add data augmentation
+ Visualization dashboard
+ Parallel processing for faster slicing
+ Direct integration with ML models
