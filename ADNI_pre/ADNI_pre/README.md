@@ -1,100 +1,102 @@
-$$ # Alzheimer's ~Disease ~Image ~Preprocessing ~Pipeline $$ 
 
-A robust preprocessing pipeline designed to convert raw 3D MRI brain scan data into usable 2D grayscale image slices, along with structured metadata for further Machine Learning and Deep Learning tasks.
+#  Alzheimer's Disease Image Preprocessing Pipeline
 
-## Project Overview
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This project focuses on preparing Alzheimer's Disease Neuroimaging Initiative (ADNI) dataset images for model training.
+A robust preprocessing pipeline designed to transform raw **3D MRI brain scan data** into optimized **2D grayscale image slices**, accompanied by structured metadata for Machine Learning and Deep Learning applications.
 
-## The pipeline:
+---
 
-Converts 3D .nii MRI scans → 2D slices
-Transforms images into grayscale .png format
-Generates a final combined metadata CSV
+##  Project Overview
 
-This preprocessing step is essential for building accurate AI models for Alzheimer's disease detection.
+This project streamlines the preparation of **ADNI (Alzheimer's Disease Neuroimaging Initiative)** datasets. Raw medical imaging is often too heavy and complex for standard CNNs; this pipeline bridges that gap by:
 
- ## Objectives
- Convert .nii medical images into 2D slices
- Normalize and convert images into grayscale .png format
- Organize processed data efficiently
- Merge multiple metadata files into a single structured CSV
- 
-## Folder Structure
-raw_data/
-│
-├── ADNI1_Complete_1.5Yr_3T/
-│ ├── ADNI/
-│ │ ├── 002_S_0413/
-│ │ │ ├── *.nii files
-│ │
-│ ├── metadata.csv
-│
-processed_data/
-│
-├── slices/ # Generated 2D image slices
-└── final_metadata/ # Combined CSV file
-│
+* **Dimensionality Reduction:** Converting 3D `.nii` volumes into high-quality 2D slices.
+* **Format Standardizing:** Transforming medical data into `.png` grayscale images.
+* **Data Alignment:** Merging disparate metadata files into a single, structured CSV for model training.
+
+---
+
+##  Objectives
+
+- [x] **Extraction:** Convert `.nii` medical images into 2D slices.
+- [x] **Normalization:** Standardize pixel intensity and convert to grayscale.
+- [x] **Organization:** Automate folder structures for large-scale datasets.
+- [x] **Data Merging:** Consolidate metadata into a single source of truth.
+
+---
+
+##  Folder Structure
+
+```text
 ADNI_PRE/
-│
-├── run_pipeline.py
-└── requirements.txt
+├── raw_data/                  # Original ADNI Dataset
+│   ├── ADNI1_Complete_3T/
+│   │   └── ADNI/
+│   │       └── 002_S_0413/    # Subject ID
+│   │           └── *.nii      # Raw scans
+│   └── raw_metadata.csv
+├── processed_data/            # Pipeline Output
+│   ├── slices/                # Generated 2D .png images
+│   └── final_metadata/        # Combined structured CSV
+├── run_pipeline.py            # Main execution script
+└── requirements.txt           # Project dependencies
+```
 
- ## Installation & Setup
-* 1️ Clone the Repository
-git clone <your-repo-link>
+---
+
+##  Tech Stack
+
+| Library | Purpose |
+| :--- | :--- |
+| **NiBabel** | Handling and header extraction of `.nii` files |
+| **NumPy** | High-performance matrix operations for image arrays |
+| **Pandas** | Metadata manipulation and CSV consolidation |
+| **OpenCV / PIL** | Image normalization and `.png` encoding |
+
+---
+
+##  Installation & Setup
+
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/your-username/ADNI_PRE.git](https://github.com/your-username/ADNI_PRE.git)
 cd ADNI_PRE
-* 2️ Install Dependencies
+```
+
+### 2. Install Dependencies
+```bash
 pip install -r requirements.txt
-* 3️ Run the Pipeline
+```
+
+### 3. Run the Pipeline
+```bash
 python run_pipeline.py
- 
- ## Output
- 
-After successful execution, you will get:
+```
 
- Image Data
- Location: processed_data/slices/
- Contains: 2D grayscale .png image slices
- Metadata
-Location: processed_data/final_metadata/
-Contains:
-Combined CSV from all folders
-Corresponding image slice IDs
- Common Issues & Fixes
- 1. CSV File Locked Error
+##  Output Details
 
-Problem: Pipeline stops if CSV is open
-Solution:
-Close the CSV file before running the script
+Upon successful execution, the `processed_data/` directory will contain:
 
-Problem: File path exceeds 260–279 character limit
+1.  **Image Data (`/slices/`)**: 2D grayscale `.png` slices indexed by subject and slice number.
+2.  **Metadata (`/final_metadata/`)**: A master CSV file linking each image slice to its corresponding clinical labels (Subject ID, Diagnosis, Age, etc.).
 
-## Solutions:
+---
 
-Rename folders to shorter names
+##  Common Issues & Fixes
 
-ADNI1_Complete_3Yr_3T → 3Yr_3T
+> [!TIP]
+> **Windows Path Limit:** If you encounter errors regarding file paths, move your project closer to the root directory (e.g., `C:/ADNI_PRE`) or shorten the raw data folder names.
 
-Move project closer to root directory
+| Error | Cause | Solution |
+| :--- | :--- | :--- |
+| **Permission Denied** | Metadata CSV is open in Excel | Close the file before running the script. |
+| **Path Length Error** | Character limit exceeded (>260) | Rename `ADNI1_Complete_1.5Yr_3T` to `3Yr_3T`. |
+| **ModuleNotFound** | Missing dependencies | Re-run `pip install -r requirements.txt`. |
 
-C:/Projects/ADNI_PRE
+---
 
- ## Use Cases
- Alzheimer's Disease Detection
- Deep Learning (CNN models)
- Medical Image Analysis
- Research & Academic Projects
- 
- ## Tech Stack
-Python 
-NumPy
-Pandas
-NiBabel (for .nii files)
-OpenCV / PIL
-
- ## Future Improvements
- Add data augmentation
- Visualization dashboard
- Parallel processing for faster slicing
- Direct integration with ML models
+##  License
+Distributed under the MIT License. See `LICENSE` for more information.
+```
