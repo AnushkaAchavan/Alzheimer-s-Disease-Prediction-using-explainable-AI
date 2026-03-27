@@ -38,7 +38,7 @@ def convert_mri_to_slices(mri_root, metadata_path, output_folder, final_csv):
             continue
         data = img.get_fdata()
 
-        for i in range(40,80):
+        for i in range(40,60):
 
             slice_img = data[:,:,i]
 
