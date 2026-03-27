@@ -1,4 +1,4 @@
-$$ Alzheimer's ~Disease ~Image ~Preprocessing ~Pipeline $$ 
+$$ # Alzheimer's ~Disease ~Image ~Preprocessing ~Pipeline $$ 
 
 A robust preprocessing pipeline designed to convert raw 3D MRI brain scan data into usable 2D grayscale image slices, along with structured metadata for further Machine Learning and Deep Learning tasks.
 
@@ -19,32 +19,34 @@ This preprocessing step is essential for building accurate AI models for Alzheim
  Normalize and convert images into grayscale .png format
  Organize processed data efficiently
  Merge multiple metadata files into a single structured CSV
- Folder Structure
+ 
+## Folder Structure
 raw_data/
 │
 ├── ADNI1_Complete_1.5Yr_3T/
-│   ├── ADNI/
-│   │   ├── 002_S_0413/
-│   │   │   ├── *.nii files
-│   │
-│   ├── metadata.csv
+│ ├── ADNI/
+│ │ ├── 002_S_0413/
+│ │ │ ├── *.nii files
+│ │
+│ ├── metadata.csv
 │
 processed_data/
 │
-├── slices/                # Generated 2D image slices
-└── final_metadata/        # Combined CSV file
-
+├── slices/ # Generated 2D image slices
+└── final_metadata/ # Combined CSV file
+│
 ADNI_PRE/
 │
 ├── run_pipeline.py
-├── requirements.txt
- Installation & Setup
-1️ Clone the Repository
+└── requirements.txt
+
+ ## Installation & Setup
+* 1️ Clone the Repository
 git clone <your-repo-link>
 cd ADNI_PRE
-2️ Install Dependencies
+* 2️ Install Dependencies
 pip install -r requirements.txt
-3️ Run the Pipeline
+* 3️ Run the Pipeline
 python run_pipeline.py
  
  ## Output
